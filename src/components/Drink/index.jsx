@@ -1,4 +1,5 @@
 import './index.css';
+import { Layer } from '../Layer';
 
 export const Drink = ({ image, name, layers, orderId }) => (
   <div className="drink">
@@ -9,10 +10,7 @@ export const Drink = ({ image, name, layers, orderId }) => (
       <div className="drink__info">
         <h3>{name}</h3>
         {layers.map((layer, idx) => (
-          <div className="layer" key={idx}>
-            <div className="layer__color" style={{ backgroundColor: layer.color }}></div>
-            <div className="layer__label">{layer.label}</div>
-          </div>
+          <Layer key={idx} color={layer.color} label={layer.label} />
         ))}
       </div>
     </div>
