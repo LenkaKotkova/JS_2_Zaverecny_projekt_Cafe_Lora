@@ -1,3 +1,5 @@
+
+import './index.css';
 import { Drink } from '../Drink';
 
 const drinks = [
@@ -29,7 +31,7 @@ const drinks = [
 ];
 
 export const Menu = () => (
-  <section className="menu">
+  <section id="menu" className="menu">
     <div className="container">
       <h2>Naše nabídka</h2>
       <p className="menu-intro">

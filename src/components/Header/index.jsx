@@ -1,3 +1,5 @@
+import './index.css';
+
 export const Header = () => (
   <header>
     <div className="header__content container">

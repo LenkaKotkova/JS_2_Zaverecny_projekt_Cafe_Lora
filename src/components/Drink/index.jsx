@@ -1,3 +1,5 @@
+import './index.css';
+
 export const Drink = ({ image, name, layers, orderId }) => (
   <div className="drink">
     <div className="drink__product">

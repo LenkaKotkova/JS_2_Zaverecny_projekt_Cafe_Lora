@@ -1,5 +1,7 @@
+import './index.css';
+
 export const Gallery = () => (
-  <section className="gallery">
+  <section id="gallery" className="gallery">
     <div className="container">
       <div className="gallery__content">
         <h2>Nově otevřeno!</h2>

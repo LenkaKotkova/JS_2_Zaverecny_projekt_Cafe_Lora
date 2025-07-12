@@ -1,3 +1,5 @@
+import './index.css';
+
 export const Footer = () => (
   <footer>
     <div className="container">
