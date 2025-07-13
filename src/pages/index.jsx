@@ -34,14 +34,26 @@ setTimeout(() => {
   document.querySelectorAll('.drink__controls').forEach(form => {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const btn = form.querySelector('.order-btn');
-      if (btn.classList.contains('order-btn--ordered')) {
-        btn.classList.remove('order-btn--ordered');
-        btn.textContent = 'Objednat';
-      } else {
-        btn.classList.add('order-btn--ordered');
-        btn.textContent = 'Zrušit';
-      }
+      const id = form.dataset.id;
+      const ordered = form.dataset.ordered === 'true';
+      // PATCH požadavek na objednání nebo zrušení objednávky
+      fetch(`http://localhost:4000/api/drinks/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([
+          { op: 'replace', path: '/ordered', value: !ordered }
+        ]),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('API odpověď:', data);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.error('Chyba při PATCH:', err);
+        });
     });
   });
 }, 0);

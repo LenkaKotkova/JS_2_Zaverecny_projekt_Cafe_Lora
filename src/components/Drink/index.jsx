@@ -14,7 +14,7 @@ export const Drink = ({ image, name, layers, orderId, ordered, id, onOrderChange
         ))}
       </div>
     </div>
-    <form className="drink__controls" data-id={id} onSubmit={e => { e.preventDefault(); onOrderChange(id); }}>
+    <form className="drink__controls" data-id={id} data-ordered={ordered} onSubmit={e => { e.preventDefault(); onOrderChange(id); }}>
       <input type="hidden" className="order-id" value={orderId} />
       <button type="submit" className={`order-btn${ordered ? ' order-btn--ordered' : ''}`}>{ordered ? 'Zrušit' : 'Objednat'}</button>
     </form>
