@@ -1,7 +1,7 @@
 import './index.css';
 import { Layer } from '../Layer';
 
-export const Drink = ({ image, name, layers, orderId }) => (
+export const Drink = ({ image, name, layers, orderId, ordered, id, onOrderChange }) => (
   <div className="drink">
     <div className="drink__product">
       <div className="drink__cup">
@@ -14,9 +14,9 @@ export const Drink = ({ image, name, layers, orderId }) => (
         ))}
       </div>
     </div>
-    <form className="drink__controls">
+    <form className="drink__controls" data-id={id} onSubmit={e => { e.preventDefault(); onOrderChange(id); }}>
       <input type="hidden" className="order-id" value={orderId} />
-      <button className="order-btn">Objednat</button>
+      <button type="submit" className={`order-btn${ordered ? ' order-btn--ordered' : ''}`}>{ordered ? 'Zrušit' : 'Objednat'}</button>
     </form>
   </div>
 );

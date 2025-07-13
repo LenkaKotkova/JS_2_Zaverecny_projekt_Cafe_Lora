@@ -1,10 +1,26 @@
 
 import './index.css';
 import { Drink } from '../Drink';
+import { useState, useEffect } from 'react';
 
 const SERVER_URL = 'http://localhost:4000';
 
-export const Menu = ({drinks}) => {
+export const Menu = ({ drinks }) => {
+
+  const [drinksState, setDrinksState] = useState(drinks);
+
+  useEffect(() => {
+    setDrinksState(drinks);
+  }, [drinks]);
+
+  const handleOrderChange = (id) => {
+    setDrinksState((prevDrinks) =>
+      prevDrinks.map((drink) =>
+        drink.id === id ? { ...drink, ordered: !drink.ordered } : drink
+      )
+    );
+  };
+
   return (
     <section className="menu" id="menu">
       <div className="container">
@@ -13,7 +29,7 @@ export const Menu = ({drinks}) => {
           Vyberte si z našeho interaktivního menu a nemusíte čekat na obsluhu
         </p>
         <div className="drinks-list">
-          {drinks.map(drink =>
+          {drinksState.map(drink =>
             <Drink
               key={drink.id}
               id={drink.id}
@@ -21,11 +37,10 @@ export const Menu = ({drinks}) => {
               ordered={drink.ordered}
               image={`${SERVER_URL}${drink.image}`}
               layers={drink.layers}
+              onOrderChange={handleOrderChange}
             />
           )}
         </div>
-
-
         <div className="order-detail">
           <a href="/order.html">Detail objednávky</a>
         </div>
