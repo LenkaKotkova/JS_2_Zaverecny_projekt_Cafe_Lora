@@ -9,12 +9,18 @@ import { Gallery } from '../components/Gallery';
 import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 
+const API_BASE = 'http://localhost:4000/api';
+// get data from api
+const response = await fetch(`${API_BASE}/drinks`);
+const data = await response.json();
+const drinksData = data.data;
+
 document.querySelector('#root').innerHTML = render(
   <div className="page">
     <Header />
     <main>
       <Banner />
-      <Menu />
+      <Menu drinks={drinksData}/>
       <Gallery />
       <Contact />
     </main>
